@@ -49,14 +49,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     YuCell *cell = [YuCell  cellWithTableView:tableView];
-    cell.cellInfo = [YuCellViewModel cellInfoWithModel:@"test"];
+    cell.cellInfo = [YuCellViewModel cellInfoWithModel:[NSString stringWithFormat:@"%ld",(long)indexPath.section]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *cellIdentifier = NSStringFromClass( [YuCell class]);
     return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(YuCell *cell) {
-        cell.cellInfo = [YuCellViewModel cellInfoWithModel:@"test"];
+        cell.cellInfo = [YuCellViewModel cellInfoWithModel:[NSString stringWithFormat:@"%ld",(long)indexPath.section]];
     }];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

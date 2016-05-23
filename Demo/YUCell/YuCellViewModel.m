@@ -27,7 +27,7 @@
         [infoItems addObject:[YuCellInfoItem itemWithTitle:@"Title3："
                                                    content:@"3333333"]];
     }
-    else if ([model isEqualToString:@"0"]) {
+    else if ([model isEqualToString:@"1"]) {
         [infoItems addObject:[YuCellInfoItem itemWithTitle:@"TitleA："
                                                    content:@"aaaaaaaaaaa"]];
         [infoItems addObject:[YuCellInfoItem itemWithTitle:@"TitleB："
