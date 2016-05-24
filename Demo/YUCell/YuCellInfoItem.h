@@ -12,7 +12,8 @@
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSString *content;
 @property (nonatomic, strong) UIFont *font;
-
+@property (nonatomic, strong) UIColor *titleColor;
+@property (nonatomic, strong) UIColor *contentColor;
 - (instancetype)initWithTitle:(NSString *)title content:(NSString *)content;
 + (instancetype)itemWithTitle:(NSString *)title content:(NSString *)content;
 @end

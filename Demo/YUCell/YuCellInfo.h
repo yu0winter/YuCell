@@ -10,7 +10,9 @@
 
 @class YuCellInfoItem;
 @interface YuCellInfo : NSObject
-@property (nonatomic, copy) UIFont *font;
+@property (nonatomic, strong) UIFont  *font;
+@property (nonatomic, strong) UIColor *titleColor;
+@property (nonatomic, strong) UIColor *contentColor;
 @property (nonatomic, strong) NSMutableArray <YuCellInfoItem *> *infoItems;
 
 + (NSMutableArray *)itemsWithTitles:(NSArray*)titles Contents:(NSArray *)contents;

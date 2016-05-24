@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 @class YuCellInfo;
 @interface YuCellViewModel : NSObject
-+ (YuCellInfo *)cellInfoWithModel:(NSString *)model;
+@property (nonatomic, strong) NSArray<YuCellInfo *> *infoArray;
+- (instancetype)initWithData:(id)data;
+- (YuCellInfo *)infoWithIndex:(NSInteger)index;
++ (instancetype)viewModelWithData:(id)data;
 @end

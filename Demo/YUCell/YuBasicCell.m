@@ -1,36 +1,36 @@
 //
-//  YuCell.m
+//  YuBasicCell.m
 //  YuCell
 //
 //  Created by 牛玉龙 on 16/5/20.
 //  Copyright © 2016年 nyl. All rights reserved.
 //
 
-#import "YuCell.h"
+#import "YuBasicCell.h"
 #import "YuCellInfo.h"
 #import "YuCellInfoItem.h"
 #import "Masonry.h"
 
 #define SCREEN_WIDTH (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) ? [[UIScreen mainScreen] bounds].size.width : 1024)
 #define SCREEN_HEIGHT (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) ? ([[UIScreen mainScreen] bounds].size.height) : 748)
-#define MAX_TITLE_LENGTH 200
+#define MAX_TITLE_LENGTH (SCREEN_WIDTH/2.0-MARGIN-PADDING)
 #define PADDING 10
 #define MARGIN 20
-@interface YuCell()
+@interface YuBasicCell()
 
 @property (nonatomic, strong) NSMutableArray<UILabel *> *titleLabels;
 @property (nonatomic, strong) NSMutableArray<UILabel *> *detailLabels;
 @end
-@implementation YuCell
+@implementation YuBasicCell
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    NSString *ID = NSStringFromClass([YuCell class]);
+    NSString *ID = NSStringFromClass([YuBasicCell class]);
     
-    YuCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    YuBasicCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (cell == nil) {
         
-        cell = [[YuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[YuBasicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     return cell;
 }
@@ -59,17 +59,19 @@
     for (NSInteger i = 0; i < infoItems.count; i++) {
         YuCellInfoItem *item = infoItems[i];
         UILabel *title = [UILabel new];
-        title.font = item.font;
+        title.font = item.font?:[UIFont systemFontOfSize:12];
         title.text = item.title;
+        title.textColor = item.titleColor?:[UIColor blackColor];
+        title.numberOfLines = 0;
         [title setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
         [self.titleLabels addObject:title];
         [self.contentView addSubview:title];
         
         UILabel *content = [UILabel new];
         content.textAlignment = NSTextAlignmentLeft;
-        content.font = item.font;
+        content.font = item.font?:[UIFont systemFontOfSize:12];
         content.text = item.content;
-        content.textColor = [UIColor grayColor];
+        content.textColor = item.contentColor?:[UIColor grayColor];
         content.numberOfLines = 0;
         [self.detailLabels addObject:content];
         [self.contentView addSubview:content];

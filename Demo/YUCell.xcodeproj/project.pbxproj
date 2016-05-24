@@ -33,7 +33,7 @@
 		EAD012291CEEBCF700E7726F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0121B1CEEBCF700E7726F /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		EAD0122A1CEEBCF700E7726F /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0121D1CEEBCF700E7726F /* View+MASAdditions.m */; };
 		EAD0122B1CEEBCF700E7726F /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD012201CEEBCF700E7726F /* ViewController+MASAdditions.m */; };
-		EAD0122E1CEEBDC800E7726F /* YuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0122D1CEEBDC800E7726F /* YuCell.m */; };
+		EAD0122E1CEEBDC800E7726F /* YuBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0122D1CEEBDC800E7726F /* YuBasicCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,8 +89,8 @@
 		EAD0121E1CEEBCF700E7726F /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		EAD0121F1CEEBCF700E7726F /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		EAD012201CEEBCF700E7726F /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		EAD0122C1CEEBDC800E7726F /* YuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuCell.h; sourceTree = "<group>"; };
-		EAD0122D1CEEBDC800E7726F /* YuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuCell.m; sourceTree = "<group>"; };
+		EAD0122C1CEEBDC800E7726F /* YuBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuBasicCell.h; sourceTree = "<group>"; };
+		EAD0122D1CEEBDC800E7726F /* YuBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuBasicCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +127,8 @@
 		EA3343A01CF2DAE700020277 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EAD0122C1CEEBDC800E7726F /* YuCell.h */,
-				EAD0122D1CEEBDC800E7726F /* YuCell.m */,
+				EAD0122C1CEEBDC800E7726F /* YuBasicCell.h */,
+				EAD0122D1CEEBDC800E7726F /* YuBasicCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -341,7 +341,7 @@
 				EACA2DE31CEF175E0027E25A /* README.md in Sources */,
 				EAD012221CEEBCF700E7726F /* MASCompositeConstraint.m in Sources */,
 				EAD012281CEEBCF700E7726F /* NSArray+MASAdditions.m in Sources */,
-				EAD0122E1CEEBDC800E7726F /* YuCell.m in Sources */,
+				EAD0122E1CEEBDC800E7726F /* YuBasicCell.m in Sources */,
 				EACA2DDF1CEF175E0027E25A /* UITableView+FDKeyedHeightCache.m in Sources */,
 				EACA2DDE1CEF175E0027E25A /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				EACA2DE61CEF18CC0027E25A /* YuCellViewModel.m in Sources */,
@@ -466,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YUCell/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyl.YUCell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,6 +478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YUCell/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyl.YUCell;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -32,4 +32,18 @@
         }
     }
 }
+- (void)setTitleColor:(UIColor *)titleColor{
+    for (YuCellInfoItem *item in self.infoItems) {
+        if (!item.titleColor) {
+            item.titleColor = titleColor;
+        }
+    }
+}
+- (void)setContentColor:(UIColor *)contentColor{
+    for (YuCellInfoItem *item in self.infoItems) {
+        if (!item.contentColor) {
+            item.contentColor = contentColor;
+        }
+    }
+}
 @end

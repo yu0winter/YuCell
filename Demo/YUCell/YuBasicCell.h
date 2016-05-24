@@ -1,5 +1,5 @@
 //
-//  YuCell.h
+//  YuBasicCell.h
 //  YuCell
 //
 //  Created by 牛玉龙 on 16/5/20.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class YuCellInfo;
-@interface YuCell : UITableViewCell
+@interface YuBasicCell : UITableViewCell
 @property (nonatomic, strong) YuCellInfo *cellInfo;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

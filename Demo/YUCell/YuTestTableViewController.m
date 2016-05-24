@@ -8,21 +8,20 @@
 
 #import "YuTestTableViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "YuCell.h"
+#import "YuBasicCell.h"
 #import "YuCellViewModel.h"
-
-
-#define SCREEN_WIDTH (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) ? [[UIScreen mainScreen] bounds].size.width : 1024)
-#define SCREEN_HEIGHT (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) ? ([[UIScreen mainScreen] bounds].size.height) : 748)
+#import "Masonry.h"
 
 @interface YuTestTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) YuCellViewModel *viewModel;
 @end
 
 @implementation YuTestTableViewController
 #pragma mark - LifeCycle 生命周期
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.viewModel = [YuCellViewModel viewModelWithData:@"any model depends on you."];
     [self setupSubViews];
     [self layoutPageSubViews];
 }
@@ -31,6 +30,10 @@
     [self.view addSubview:self.tableView];
 }
 - (void)layoutPageSubViews{
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     //设置页面子视图布局
 }
 #pragma mark - Event Response 事件响应
@@ -38,7 +41,7 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 2;
+    return self.viewModel.infoArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -48,15 +51,15 @@
 #pragma mark UITableViewDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    YuCell *cell = [YuCell  cellWithTableView:tableView];
-    cell.cellInfo = [YuCellViewModel cellInfoWithModel:[NSString stringWithFormat:@"%ld",(long)indexPath.section]];
+    YuBasicCell *cell = [YuBasicCell  cellWithTableView:tableView];
+    cell.cellInfo = [self.viewModel infoWithIndex: indexPath.section];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *cellIdentifier = NSStringFromClass( [YuCell class]);
-    return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(YuCell *cell) {
-        cell.cellInfo = [YuCellViewModel cellInfoWithModel:[NSString stringWithFormat:@"%ld",(long)indexPath.section]];
+    NSString *cellIdentifier = NSStringFromClass( [YuBasicCell class]);
+    return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(YuBasicCell *cell) {
+        cell.cellInfo = [self.viewModel infoWithIndex: indexPath.section];
     }];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -66,10 +69,10 @@
 #pragma mark - Custom Accessors 自定义属性
 - (UITableView *)tableView{
     if (_tableView) return _tableView;
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
-    [tableView registerClass:[YuCell class] forCellReuseIdentifier:NSStringFromClass([YuCell class])];
+    [tableView registerClass:[YuBasicCell class] forCellReuseIdentifier:NSStringFromClass([YuBasicCell class])];
     _tableView = tableView;
     return _tableView;
 }
