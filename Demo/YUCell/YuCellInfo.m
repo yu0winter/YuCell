@@ -16,6 +16,7 @@
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:titles.count];
     for (int i = 0; i < titles.count; i ++ ) {
         YuCellInfoItem *item = [[YuCellInfoItem alloc] initWithTitle:titles[i] content:contents[i]];
+        item.font = fontSize;
         [items addObject:item];
     }
     return items;
