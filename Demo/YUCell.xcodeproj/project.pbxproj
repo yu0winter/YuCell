@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23E849E21E5F78BD008DBCF1 /* YuCellInfoItemSubOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E849E11E5F78BD008DBCF1 /* YuCellInfoItemSubOne.m */; };
 		EA3343971CF2CEB700020277 /* YuCellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3343961CF2CEB700020277 /* YuCellInfo.m */; };
 		EA33439A1CF2CEC100020277 /* YuCellInfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3343991CF2CEC100020277 /* YuCellInfoItem.m */; };
 		EA33439D1CF2D97100020277 /* YuTestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA33439C1CF2D97100020277 /* YuTestTableViewController.m */; };
@@ -37,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23E849E01E5F78BD008DBCF1 /* YuCellInfoItemSubOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuCellInfoItemSubOne.h; sourceTree = "<group>"; };
+		23E849E11E5F78BD008DBCF1 /* YuCellInfoItemSubOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuCellInfoItemSubOne.m; sourceTree = "<group>"; };
 		EA3343951CF2CEB700020277 /* YuCellInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuCellInfo.h; sourceTree = "<group>"; };
 		EA3343961CF2CEB700020277 /* YuCellInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuCellInfo.m; sourceTree = "<group>"; };
 		EA3343981CF2CEC100020277 /* YuCellInfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuCellInfoItem.h; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				EA3343961CF2CEB700020277 /* YuCellInfo.m */,
 				EA3343981CF2CEC100020277 /* YuCellInfoItem.h */,
 				EA3343991CF2CEC100020277 /* YuCellInfoItem.m */,
+				23E849E01E5F78BD008DBCF1 /* YuCellInfoItemSubOne.h */,
+				23E849E11E5F78BD008DBCF1 /* YuCellInfoItemSubOne.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23E849E21E5F78BD008DBCF1 /* YuCellInfoItemSubOne.m in Sources */,
 				EA33439A1CF2CEC100020277 /* YuCellInfoItem.m in Sources */,
 				EACA2DE01CEF175E0027E25A /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				EA3343971CF2CEB700020277 /* YuCellInfo.m in Sources */,

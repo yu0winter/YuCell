@@ -13,4 +13,5 @@
 - (instancetype)initWithData:(id)data;
 - (YuCellInfo *)infoWithIndex:(NSInteger)index;
 + (instancetype)viewModelWithData:(id)data;
+- (NSArray <NSArray *>*)fetchDataArray;
 @end

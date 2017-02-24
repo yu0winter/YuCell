@@ -9,6 +9,7 @@
 #import "YuBasicCell.h"
 #import "YuCellInfo.h"
 #import "YuCellInfoItem.h"
+#import "YuCellInfoItemSubOne.h"
 #import "Masonry.h"
 
 #define SCREEN_WIDTH (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) ? [[UIScreen mainScreen] bounds].size.width : 1024)
@@ -16,6 +17,8 @@
 #define MAX_TITLE_LENGTH (SCREEN_WIDTH/2.0-MARGIN-PADDING)
 #define PADDING 10
 #define MARGIN 20
+#define SCALE 3
+
 @interface YuBasicCell()
 
 @property (nonatomic, strong) NSMutableArray<UILabel *> *titleLabels;
@@ -34,6 +37,60 @@
     }
     return cell;
 }
+
++ (instancetype)cellWithTableView:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath {
+    YuBasicCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([self class]) forIndexPath:indexPath];
+    return cell;
+}
+
+
+- (void)layoutByClassCellModel:(YuCellInfoItem *)infoItem {
+    
+    NSArray *subviews = self.contentView.subviews;
+    [subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+
+    
+    if ([infoItem isKindOfClass:[YuCellInfoItemSubOne class]]) {
+        
+        UILabel *title = [UILabel new];
+        title.font = infoItem.font?:[UIFont systemFontOfSize:12];
+        title.text = infoItem.title;
+        title.textColor = infoItem.titleColor?:[UIColor blackColor];
+        title.numberOfLines = 0;
+        [self.contentView addSubview:title];
+        
+        UILabel *content = [UILabel new];
+        content.textAlignment = NSTextAlignmentLeft;
+        content.font = infoItem.font?:[UIFont systemFontOfSize:12];
+        content.text = infoItem.content;
+        content.textColor = infoItem.contentColor?:[UIColor grayColor];
+        content.numberOfLines = 0;
+        [self.contentView addSubview:content];
+        
+        [title mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(MARGIN).key(@"titlt-left");
+            make.top.equalTo(self.contentView).offset(PADDING).key(@"titlt-Top");
+            make.right.equalTo(content.mas_left).offset(-PADDING).key(@"titlt-right");
+            
+            if ([self widthWithText:title.text Font:title.font] + MARGIN + PADDING > SCREEN_WIDTH/3.0) {
+                make.width.equalTo(content).dividedBy(2).key(@"titlt-height");
+            }else {
+                make.width.equalTo(content).dividedBy(3).key(@"titlt-height");
+
+            }
+            make.bottom.lessThanOrEqualTo(self.contentView).offset(-MARGIN).key(@"titlt-bottom");
+        }];
+        
+        [content mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView).offset(PADDING).key(@"content-top");
+            make.right.equalTo(self.contentView).offset(-MARGIN).key(@"content-right");
+            make.bottom.lessThanOrEqualTo(self.contentView).offset(-PADDING).key(@"content-bottom");
+        }];
+    }
+}
+
 
 - (void)setCellInfo:(YuCellInfo *)cellInfo{
     _cellInfo = cellInfo;
@@ -128,4 +185,6 @@
     }
     return 0;
 }
+
+
 @end

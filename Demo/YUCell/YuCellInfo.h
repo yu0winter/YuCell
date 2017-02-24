@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+
 @class YuCellInfoItem;
 @interface YuCellInfo : NSObject
 @property (nonatomic, strong) UIFont  *font;
