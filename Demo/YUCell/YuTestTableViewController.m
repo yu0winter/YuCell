@@ -12,9 +12,11 @@
 #import "YuCellViewModel.h"
 #import "Masonry.h"
 
+
 @interface YuTestTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YuCellViewModel *viewModel;
+@property (nonatomic, strong) NSArray<NSArray *> *dataArray;
 @end
 
 @implementation YuTestTableViewController
@@ -41,25 +43,29 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return self.viewModel.infoArray.count;
+    //    return self.viewModel.infoArray.count;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    //    return 1;
+    return [self.dataArray[section] count];
 }
 #pragma mark UITableViewDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    YuBasicCell *cell = [YuBasicCell  cellWithTableView:tableView];
-    cell.cellInfo = [self.viewModel infoWithIndex: indexPath.section];
+    YuBasicCell *cell = [YuBasicCell  cellWithTableView:tableView andIndexPath:indexPath];
+    //    cell.cellInfo = [self.viewModel infoWithIndex: indexPath.section];
+    [cell layoutByClassCellModel:self.dataArray[indexPath.section][indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *cellIdentifier = NSStringFromClass( [YuBasicCell class]);
     return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(YuBasicCell *cell) {
-        cell.cellInfo = [self.viewModel infoWithIndex: indexPath.section];
+        //        cell.cellInfo = [self.viewModel infoWithIndex: indexPath.section];
+        [cell layoutByClassCellModel:self.dataArray[indexPath.section][indexPath.row]];
     }];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -72,9 +78,16 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [tableView registerClass:[YuBasicCell class] forCellReuseIdentifier:NSStringFromClass([YuBasicCell class])];
     _tableView = tableView;
     return _tableView;
 }
+
+- (NSArray<NSArray *> *)dataArray {
+    
+    return [_viewModel fetchDataArray];
+}
+
 #pragma mark - Custom Method    自定义方法
 @end
